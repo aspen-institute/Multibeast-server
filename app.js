@@ -6,7 +6,7 @@ const passport = require('passport');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-// const path = require('path');
+const path = require('path');
 const port = process.env.PORT || 5000;
 // const MongoDBStore = require('connect-mongodb-session')(session);
 require('./server/config/auth');
@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(router);
-
+app.use(express.static(path.join(__dirname, './public/index.html')));
 //production mode
 // if (process.env.NODE_ENV === 'production') {
 // 	app.use(express.static(path.join(__dirname, '/client/build')));
